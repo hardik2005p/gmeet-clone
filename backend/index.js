@@ -1,6 +1,6 @@
 const mongoose=require("mongoose")
 
-mongoose.connect('mongodb+srv://');
+mongoose.connect(process.env.MongoDB_URL);
 
 const userSchema=new mongoose.Schema({
     email:{
