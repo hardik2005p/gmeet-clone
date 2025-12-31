@@ -11,7 +11,7 @@ app.use(bodyparser.json())
 
 
 const JWT_Secret=process.env.JWT_Secret;
-console.log(JWT_Secret)
+//console.log(JWT_Secret)
 app.post('/auth/signup',signup);
 
 app.post("/auth/login",login);

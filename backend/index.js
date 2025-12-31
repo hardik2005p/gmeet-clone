@@ -13,9 +13,15 @@ const userSchema=new mongoose.Schema({
 })
 
 const RoomSchema=new mongoose.Schema({
-    id:String,
-    roomCode: String,
-    createdBy:String,
+    roomid : {
+        type:String,
+        unique:true
+    },
+    roomCode: {
+        type:String,
+        unique:true
+    }
+    
 
 })
 const User=mongoose.model('User',userSchema)
