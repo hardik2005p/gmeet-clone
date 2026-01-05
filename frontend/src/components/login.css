@@ -1,0 +1,10 @@
+.box{
+    width:100px;
+    height:50px;
+    border: 2px solid black;
+    border-color:yellow;
+    display:flex;
+
+
+
+}
