@@ -4,22 +4,18 @@ import './login.css'
 
 export function Login_email(){
     const [Email,setEmail]=useState("");
-    const [Passowrd,setPassowrd]=useState("");
+    const [Password,setPassowrd]=useState("");
 
-    function handleEmail(e){
-        setEmail(e.target.value)
-
-}
-function handlePassword(e)
-{
-    setPassowrd(e.target.value)
-}
+    
     return(
     <div>
-        <div>
-             <h2>Login</h2>
-             <input placeholder='Email' onChange={handleEmail}></input> <br></br>
-             <input placeholder='Passowrd' onChange={handlePassword}></input>
+        <div className='login-page'>
+            <div className='login-card'>
+             <h2 >Login</h2>
+             <input  placeholder='Email' onChange={(e)=>setEmail(e.target.value)}></input> <br></br>
+             <input placeholder='Passowrd' onChange={(e)=>setPassowrd(e.target.value)}></input>
+
+            </div>
         </div>
     </div>
     )
