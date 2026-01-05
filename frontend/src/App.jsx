@@ -18,12 +18,7 @@ function App() {
   return (
     <>
       <div>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/health" element={<Health/>}></Route>
-          </Routes>
-   
-        </BrowserRouter>
+        
 
         <Login_email></Login_email>
 
