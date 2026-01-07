@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import {BrowserRouter,Routes,Route,useNavigate} from 'react-router-dom'
-import { Login_email } from './components/login_page'
+import { Login_email } from './components/login'
 function Health(){
     return (
       <div>
@@ -18,8 +18,13 @@ function App() {
   return (
     <>
       <div>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/login" element={<Login_email></Login_email>}></Route>
+
+          </Routes>
+        </BrowserRouter>
         
-        <Login_email></Login_email>
         
 
       </div>
