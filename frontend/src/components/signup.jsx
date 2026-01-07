@@ -12,14 +12,10 @@ export function Login_email(){
         <div className='login-page'>
             <div className='login-card'>
              <h2 >Login</h2>
-             <input  type='email' placeholder='Email' onChange={(e)=>setEmail(e.target.value)}></input> <br></br>
+             <input  placeholder='Email' onChange={(e)=>setEmail(e.target.value)}></input> <br></br>
              <input placeholder='Passowrd' onChange={(e)=>setPassowrd(e.target.value)}></input>
-             <button>
-                login
-             </button>
 
             </div>
-            
         </div>
     </div>
     )
