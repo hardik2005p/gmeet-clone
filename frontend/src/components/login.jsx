@@ -27,18 +27,19 @@ export function Login_email(){
         alert(data);
         return;
       }
+      alert(data);
 
       // store token
       localStorage.setItem("token", data);
 
       // navigate after success
-      navigate("/");
+      navigate("/Room");
     } catch (error) {
       console.error(error);
       alert("Login failed");
     }
   }
-  
+
     return(
     <div>
         <div className='login-page'>
