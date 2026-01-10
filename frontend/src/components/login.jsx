@@ -27,7 +27,7 @@ export function Login_email(){
         alert(data);
         return;
       }
-      alert(data);
+      alert("LOGIN SUCCESSFULL");
 
       // store token
       localStorage.setItem("token", data);

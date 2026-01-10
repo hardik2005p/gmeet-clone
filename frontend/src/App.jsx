@@ -5,6 +5,7 @@ import './App.css'
 import {BrowserRouter,Routes,Route,useNavigate} from 'react-router-dom'
 import { Login_email } from './components/login'
 import { Signup_email } from './components/signup'
+import { RoomsPage } from './pages/Room'
 function Health(){
     return (
       <div>
@@ -23,7 +24,7 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login_email></Login_email>}></Route>
             <Route path="/signup" element={<Signup_email></Signup_email>}></Route>
-
+            <Route path="/Room" element={<RoomsPage/>}></Route>
           </Routes>
         </BrowserRouter>
         

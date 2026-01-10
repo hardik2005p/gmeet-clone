@@ -1,0 +1,67 @@
+/* Page background */
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: 'Times New Roman', Times, serif;
+  background: linear-gradient(135deg, #0d255682, #042431cb);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Center container */
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Glassmorphic card */
+.card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+  width: 320px;
+}
+
+/* Heading */
+.card h1 {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  color: rgb(0, 0, 0);
+  margin-bottom: 30px;
+}
+
+/* Buttons */
+.btn {
+  width: 100%;
+  padding: 14px;
+  margin: 12px 0;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Create Room Button */
+.create {
+  background: linear-gradient(135deg, grey, darkslategray);
+  color: white;
+}
+
+/* Join Room Button */
+.join {
+  background: linear-gradient(135deg,grey, darkslategray);
+  color:rgb(237, 237, 237);
+}
+
+/* Hover effects */
+.btn:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
