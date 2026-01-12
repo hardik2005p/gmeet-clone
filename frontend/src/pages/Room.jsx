@@ -1,17 +1,19 @@
 import './room.css'
 
 export function RoomsPage(){
-    let roomCode,roomPassword;
+     
     async function CreateRoom() {
         try{
             const response=await fetch("http://localhost:3000/room",{
                 method:"GET",
                 
             })
-            const data=await response.text();
-            roomCode=data.code;
-            roomPassword=data.password;
-            alert("Room Created")
+            const data=await response.json();
+            const roomCode=data.roomid;
+            const roomPassword=data.password;
+
+            alert("Room Created");
+            console.log(data);
             console.log(roomCode);
             console.log(roomPassword)
 

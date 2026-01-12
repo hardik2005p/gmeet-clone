@@ -1,13 +1,13 @@
 const crypto=require("crypto");
-const nanoid=require("nanoid");
+const {nanoid}=require("nanoid");
 const bcrypt=require("bcryptjs")
 const {Room}=require(".")
 
-async function createRoom() {
+async function createRoom(req,res) {
 
     const roomid=nanoid(10);
     const roomPassword=crypto.randomBytes(10).toString("base64").replace(/[^a-zA-Z0-9]/g,"").slice(0,8);
-    const passwordHash=await bcrypt.hash(roomPassowrd,10);
+    const passwordHash=await bcrypt.hash(roomPassword,10);
     
 
     await Room.create({
@@ -16,7 +16,7 @@ async function createRoom() {
     })
 
     res.status(201).json({
-        code:roomCode,
+        roomid:roomid,
         password:roomPassword
 
     })
