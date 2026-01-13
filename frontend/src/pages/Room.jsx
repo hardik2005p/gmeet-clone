@@ -1,7 +1,8 @@
+import { useNavigate } from 'react-router-dom';
 import './room.css'
 
 export function RoomsPage(){
-     
+     const navigate=useNavigate();
     async function CreateRoom() {
         try{
             const response=await fetch("http://localhost:3000/room",{
@@ -16,6 +17,13 @@ export function RoomsPage(){
             console.log(data);
             console.log(roomCode);
             console.log(roomPassword)
+
+            navigate(`/meetingRoom/${roomCode}`,{
+                state:{
+                    roomCode,
+                    roomPassword
+                }
+            });
 
 
         }

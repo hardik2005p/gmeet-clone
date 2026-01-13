@@ -6,13 +6,7 @@ import {BrowserRouter,Routes,Route,useNavigate} from 'react-router-dom'
 import { Login_email } from './components/login'
 import { Signup_email } from './components/signup'
 import { RoomsPage } from './pages/Room'
-function Health(){
-    return (
-      <div>
-        My Health is Great
-      </div>
-    )
-  }
+
 function App() {
   const [count, setCount] = useState(0)
   
