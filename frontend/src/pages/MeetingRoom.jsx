@@ -6,26 +6,39 @@ export function MeetingRoom(){
     const {roomid}=useParams();
     const location=useLocation();
 
-    const {roomCode,roomPassword}=location.state||{};
+    const roomPassword=location.state.roomPassword||{};
 
 
     useEffect(()=>{
         socket.connect();
-        socket.emit("room:join",{
-            roomid,
-            userid:socket.id
 
-        })
+        socket.on("connect", () => {
+          socket.emit("room:join", {
+            roomid: roomid,
+            userid: socket.id
+          });
+        });
 
         socket.on("room:user-joined",(data)=>{
-            console.log("User Joined:",data);
+          console.log("User Joined:",data.userid);
+        })
+
+        socket.on("room:user-left",(data)=>{
+          console.log("user left: ",data.userid)
         })
 
         return()=>{
             socket.emit("room:leave",{
-                roomid,
+                roomid:roomid,
                 userid:socket.id
             })
+
+            socket.off("connect");
+            socket.off("room:user-joined");
+            socket.off("room:user-left");
+
+
+            
 
             socket.disconnect();
         }
@@ -34,7 +47,7 @@ export function MeetingRoom(){
     return (
     <div>
       <div style={{ position: "absolute", top: 10, right: 10 }}>
-        <p>Room: {roomCode}</p>
+        <p>Room: {roomid}</p>
         <p>Password: {roomPassword}</p>
       </div>
 

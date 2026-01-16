@@ -10,17 +10,16 @@ export function RoomsPage(){
                 
             })
             const data=await response.json();
-            const roomCode=data.roomid;
+            const roomid=data.roomid;
             const roomPassword=data.password;
 
             alert("Room Created");
             console.log(data);
-            console.log(roomCode);
-            console.log(roomPassword)
+            
 
-            navigate(`/meetingRoom/${roomCode}`,{
+            navigate(`/meetingRoom/${roomid}`,{
                 state:{
-                    roomCode,
+                    roomid,
                     roomPassword
                 }
             });
