@@ -50,7 +50,7 @@ async function joinRoom(req,res)
             })
 
         }
-        res.json({message:"Joined Room Successfully"})
+        res.status(201).json({message:"Joined Room Successfully"})
 
 
 

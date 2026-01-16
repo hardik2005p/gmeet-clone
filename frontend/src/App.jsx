@@ -7,7 +7,7 @@ import { Login_email } from './components/login'
 import { Signup_email } from './components/signup'
 import { RoomsPage } from './pages/Room'
 import { MeetingRoom } from './pages/MeetingRoom'
-
+import { JoinRoom } from './pages/JoinRoom'
 function App() {
   const [count, setCount] = useState(0)
   
@@ -19,8 +19,9 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login_email></Login_email>}></Route>
             <Route path="/signup" element={<Signup_email></Signup_email>}></Route>
-            <Route path="/Room" element={<RoomsPage/>}></Route>
+            <Route path="/room" element={<RoomsPage/>}></Route>
             <Route path="/meetingRoom/:roomid" element={<MeetingRoom></MeetingRoom>}></Route>
+            <Route path="/join" element={<JoinRoom></JoinRoom>}></Route>
           </Routes>
         </BrowserRouter>
         

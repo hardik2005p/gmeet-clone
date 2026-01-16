@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import './room.css'
 
+
 export function RoomsPage(){
      const navigate=useNavigate();
     async function CreateRoom() {
@@ -32,12 +33,17 @@ export function RoomsPage(){
         }
 
     }
+
+    function joinRoom()
+    {
+        navigate("/join");
+    }
     return (
         <div className="container">
             <div className="card">
                 <h1 >Start Meeting</h1>
                 <button className="btn create" onClick={CreateRoom}>Create Room</button>
-                <button className="btn join">Join Room</button>
+                <button className="btn join" onClick={joinRoom}>Join Room</button>
             </div>
         </div>
 
