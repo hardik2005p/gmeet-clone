@@ -31,11 +31,13 @@ async function login(req,res)
                 message:"Incorrect Password"
             })
         }
-        res.status(201).json({
-            message:"Login Successfull"
-        })
         const token=jwt.sign(user.email,JWT_Secret);
-        res.send(token);
+        res.status(201).json({
+            message:"Login Successfull",
+            token
+        })
+        
+       
 
 
 

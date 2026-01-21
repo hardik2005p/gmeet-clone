@@ -32,7 +32,11 @@ export function Signup_email(){
 
             }
             alert(data);
-            navigate("/Room")
+            navigate("/room",{
+                state:{
+                    Email
+                }
+            })
         }
         catch(e){
             console.log(e);

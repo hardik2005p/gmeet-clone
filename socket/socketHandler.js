@@ -1,12 +1,12 @@
-const { socket } = require("../frontend/src/socket");
 
-function socketHandler(io){
+
+function socketHandler(io,emailToSocketMapping){
     io.on("connection",(user)=>{
         console.log("New user joined:",user.id);
 
-        socket.currentRoom=null;
+        user.currentRoom=null;
 
-        user.on("room:join",({roomid,userid})=>{
+        user.on("room:join",({roomid,userid,emailid})=>{
             if(!roomid||!userid){
                 if(!roomid)
                     console.log("NO ROOMID");
@@ -17,34 +17,55 @@ function socketHandler(io){
                 
 
             } 
-
-            socket.currentRoom=roomid;
+            emailToSocketMapping.set(emailid,userid);
+            user.currentRoom=roomid;
 
         
 
             user.join(roomid);
             console.log(`${user.id} joined room ${roomid}`);
 
-            user.to(roomid).emit("room:user-joined",{
-                userid:user.id
-            })
+            user.to(roomid).emit("room:user-joined",userid)
         })
 
         user.on("chat:message",(message)=>{
-            if(!socket.currentRoom||!message)
+            if(!user.currentRoom||!message)
                 return;
             
-            user.to(socket.currentRoom).emit("chat:message",{userid:user.id,message});
+            user.to(user.currentRoom).emit("chat:message",{userid:user.id,message});
 
 
         })
+
+        //----Web-RTC---//
+
+        user.on("webrtc:offer",({offer,to})=>{
+            io.to(to).emit("webrtc:offer",{
+                offer,
+                from:user.id
+            })
+        })
+
+        user.on("webrtc:answer",({answer,to})=>{
+            io.to(to).emit("webrtc:answer",{
+                answer,
+                from: user.id
+            })
+        })
+
+        user.on("webrtc:ice", ({ candidate, to }) => {
+            io.to(to).emit("webrtc:ice", {
+                candidate,
+                from: user.id
+            });
+        });
 
         
 
         user.on("disconnect",()=>{
             console.log("user disconnected:",user.id);
-            if(socket.currentRoom!=null){
-                user.to(socket.currentRoom).emit("room:user-left",{
+            if(user.currentRoom!=null){
+                user.to(user.currentRoom).emit("room:user-left",{
                     userid:user.id
                 });
             }

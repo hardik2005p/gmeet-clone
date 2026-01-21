@@ -36,7 +36,9 @@ const io=new Server(server,{
   }
 })
 
-socketHandler(io);
+const emailToSocketMapping= new Map();
+
+socketHandler(io,emailToSocketMapping);
 
 app.post("/auth/signup", signup);
 app.post("/auth/login", login);
@@ -46,3 +48,4 @@ app.post("/room",joinRoom);
 server.listen(3000, () => {
   console.log("Server running on port 3000");
 });
+

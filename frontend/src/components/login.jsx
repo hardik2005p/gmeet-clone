@@ -33,7 +33,12 @@ export function Login_email(){
       localStorage.setItem("token", data);
 
       // navigate after success
-      navigate("/Room");
+      navigate("/Room",{
+        state:{
+          Email
+        }
+      });
+
     } catch (error) {
       console.error(error);
       alert("Login failed");
