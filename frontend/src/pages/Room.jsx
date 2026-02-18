@@ -1,54 +1,54 @@
-import { useLocation, useNavigate } from 'react-router-dom';
-import './room.css'
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import "./room.css";
 
+export function RoomsPage() {
+  const navigate = useNavigate();
+  const location = useLocation();
 
-export function RoomsPage(){
-     const navigate=useNavigate();
-     const location=useLocation();
-     const email=location.state.Email||{};
-    async function CreateRoom() {
-        try{
-            const response=await fetch("http://localhost:3000/room",{
-                method:"GET",
-                
-            })
-            const data=await response.json();
-            const roomid=data.roomid;
-            const roomPassword=data.password;
+  const [email, setEmail] = useState(null);
 
-            alert("Room Created");
-            console.log(data);
-            
-
-            navigate(`/meetingRoom/${roomid}`,{
-                state:{
-                    roomid,
-                    roomPassword,
-                    email
-                }
-            });
-
-
-        }
-        catch(e)
-        {
-            console.log(e);
-        }
-
+  useEffect(() => {
+    if (!location.state || !location.state.Email) {
+      alert("Enter Email address");
+      navigate("/login");
+    } else {
+      setEmail(location.state.Email);
     }
+  }, [location.state, navigate]);
 
-    function joinRoom()
-    {
-        navigate("/join");
+  async function CreateRoom() {
+    try {
+      const response = await fetch("http://localhost:3000/room");
+      const data = await response.json();
+
+      navigate(`/meetingRoom/${data.roomid}`, {
+        state: {
+          roomid: data.roomid,
+          roomPassword: data.password,
+          email,
+        },
+      });
+    } catch (e) {
+      console.log(e);
     }
-    return (
-        <div className="container">
-            <div className="card">
-                <h1 >Start Meeting</h1>
-                <button className="btn create" onClick={CreateRoom}>Create Room</button>
-                <button className="btn join" onClick={joinRoom}>Join Room</button>
-            </div>
-        </div>
+  }
 
-    )
+  function joinRoom() {
+    navigate("/join");
+  }
+
+  return (
+    <div className="container">
+      <div className="card">
+        <h1>Start Meeting</h1>
+        <button className="btn create" onClick={CreateRoom}>
+          Create Room
+        </button>
+        <button className="btn join" onClick={joinRoom}>
+          Join Room
+        </button>
+      </div>
+    </div>
+  );
 }
