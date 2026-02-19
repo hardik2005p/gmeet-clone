@@ -1,5 +1,5 @@
 Issues to fix:
-1. everytime a user joins two videos are shown for him
+1. everytime a user joins two videos are shown for him---> fixed ---> reason : in useEffect i was using roomID in the dependency array ----> why was that giving error ????
 2. everytime a user leaves the video gets freeze instead of being removed completely from the screen
 3. 
 
