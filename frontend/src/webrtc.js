@@ -39,7 +39,7 @@ function createPeerConnection(remoteSocketId,localStream,peers,socket) {
 export async function startLocalStream(localVideoRef,localStreamRef){
     const stream=await navigator.mediaDevices.getUserMedia({
         video:true,
-        audio: true
+        audio: false
     })
 
     localVideoRef.current.srcObject=stream;

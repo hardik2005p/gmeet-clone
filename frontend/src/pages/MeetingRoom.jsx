@@ -90,7 +90,7 @@ export function MeetingRoom(){
         }
       }
       init();
-    },[roomid]);
+    },[]);
 
 
     const [message,setMessage]=useState();

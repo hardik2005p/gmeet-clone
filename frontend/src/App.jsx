@@ -18,6 +18,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/login" element={<Login_email></Login_email>}></Route>
+            <Route path="/" element={<Login_email></Login_email>}></Route>
             <Route path="/signup" element={<Signup_email></Signup_email>}></Route>
             <Route path="/room" element={<RoomsPage/>}></Route>
             <Route path="/meetingRoom/:roomid" element={<MeetingRoom></MeetingRoom>}></Route>
