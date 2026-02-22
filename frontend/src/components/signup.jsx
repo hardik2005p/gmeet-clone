@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import './login.css'
 import { useNavigate } from 'react-router-dom';
-
-
+const local=import.meta.env.VITE_LOCAL
 export function Signup_email(){
     const [Email,setEmail]=useState("");
     const [Password,setPassowrd]=useState("");
@@ -10,7 +9,7 @@ export function Signup_email(){
     const navigate=useNavigate();
     async function signupHandle() {
         try{
-            const response=await fetch("http://localhost:3000/auth/signup",{
+            const response=await fetch(`${local}/auth/signup`,{
                 method:"POST",
                 headers:{
                     "Content-Type":"application/json"

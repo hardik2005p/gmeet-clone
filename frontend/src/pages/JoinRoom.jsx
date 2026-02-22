@@ -1,7 +1,7 @@
 import { useState } from "react"
 import './joinroom.css'
 import { useNavigate } from "react-router-dom";
-
+const local=import.meta.env.VITE_LOCAL
 export function JoinRoom(){
     const [roomid,setroomid]=useState();
     const [roomPassword,setroomPassword]=useState();
@@ -10,7 +10,7 @@ export function JoinRoom(){
     async function joinRoomHandle(){
 
         try{
-            const response=await fetch("http://localhost:3000/room",{
+            const response=await fetch(`${local}/room`,{
                 method:"POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -29,7 +29,8 @@ export function JoinRoom(){
             navigate(`/meetingRoom/${roomid}`,{
                 state:{
                     roomid,
-                    roomPassword
+                    roomPassword,
+                    
                 }
             });
             

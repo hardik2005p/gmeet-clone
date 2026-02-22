@@ -4,6 +4,7 @@ const jwt=require("jsonwebtoken");
 
 
 const JWT_Secret=process.env.JWT_Secret;
+const local=process.env.local
 
 async function login(req,res)
 {

@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./room.css";
-
+const local=import.meta.env.VITE_LOCAL
 export function RoomsPage() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -19,7 +19,7 @@ export function RoomsPage() {
 
   async function CreateRoom() {
     try {
-      const response = await fetch("http://localhost:3000/room");
+      const response = await fetch(`${local}/room`);
       const data = await response.json();
 
       navigate(`/meetingRoom/${data.roomid}`, {
@@ -35,7 +35,12 @@ export function RoomsPage() {
   }
 
   function joinRoom() {
-    navigate("/join");
+    navigate("/join",{
+      state:{
+        email
+
+      }
+    });
   }
 
   return (

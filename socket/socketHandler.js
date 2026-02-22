@@ -6,18 +6,17 @@ function socketHandler(io,emailToSocketMapping){
 
         user.currentRoom=null;
 
-        user.on("room:join",({roomid,userid,emailid})=>{
-            if(!roomid||!userid){
+        user.on("room:join",({roomid})=>{
+            if(!roomid){
                 if(!roomid)
                     console.log("NO ROOMID");
-                if(!userid)
-                    console.log("NO USERID");
+                
 
                 return;
                 
 
             } 
-            emailToSocketMapping.set(emailid,userid);
+            
             user.currentRoom=roomid;
 
         
@@ -25,20 +24,23 @@ function socketHandler(io,emailToSocketMapping){
             user.join(roomid);
             console.log(`${user.id} joined room ${roomid}`);
 
-            user.to(roomid).emit("room:user-joined",userid)
+            user.to(roomid).emit("room:user-joined",{userid:user.id})
         })
 
         user.on("chat:message",(message)=>{
             if(!user.currentRoom||!message)
                 return;
             
-            user.to(user.currentRoom).emit("chat:message",{userid:user.id,message});
+            user.to(user.currentRoom).emit("chat:message",{userid:user.id,message,
+                timestamp: new Date().toLocaleTimeString([],{hour:"2-digit",minute: "2-digit"}),
+            });
 
 
         })
 
         //----Web-RTC---//
 
+        // 1. sending offer to the new user that joined which is {to};
         user.on("webrtc:offer",({offer,to})=>{
             io.to(to).emit("webrtc:offer",{
                 offer,
@@ -46,6 +48,8 @@ function socketHandler(io,emailToSocketMapping){
             })
         })
 
+
+        // 2. Sending asnwer to the existing users from the new user;
         user.on("webrtc:answer",({answer,to})=>{
             io.to(to).emit("webrtc:answer",{
                 answer,

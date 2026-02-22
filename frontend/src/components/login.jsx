@@ -1,16 +1,18 @@
 import { useState } from 'react'
 import './login.css'
 import { useNavigate } from 'react-router-dom';
+const local=import.meta.env.VITE_LOCAL
 
 
 export function Login_email(){
     const [Email,setEmail]=useState("");
     const [Password,setPassowrd]=useState("");
     const navigate=useNavigate();
+    //console.log(local)
 
     async function handleLogin() {
     try {
-      const response = await fetch("http://localhost:3000/auth/login", {
+      const response = await fetch(`${local}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

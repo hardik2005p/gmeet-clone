@@ -1,5 +1,6 @@
 import { io } from "socket.io-client";
-
-export const socket = io("http://localhost:3000", {
+const local=import.meta.env.VITE_LOCAL;
+export const socket = io(`${local}`, {
   autoConnect: false,
 });
+

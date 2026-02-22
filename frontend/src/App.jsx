@@ -8,6 +8,7 @@ import { Signup_email } from './components/signup'
 import { RoomsPage } from './pages/Room'
 import { MeetingRoom } from './pages/MeetingRoom'
 import { JoinRoom } from './pages/JoinRoom'
+const local=import.meta.env.VITE_LOCAL
 function App() {
   const [count, setCount] = useState(0)
   
