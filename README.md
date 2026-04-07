@@ -1,10 +1,3 @@
-Issues to fix:
-1. everytime I cntrl+s the file meetingroom or any other in my react the video element stays there and just gets black, that is the area of the video becomes black and a new video gets added of the same person
-2. everytime a user leaves the video gets freeze instead of being removed completely from the screen
-3. doesnt work when going on tablet, the same room is joined but neither the video is asked for access nor the messages go ----> webRTC and socketIO error
-
-
-
 How to start with the project?
 
 1. Step 1 : Clone the Repository and make sure to create and add the      following in your .env file ---> 
